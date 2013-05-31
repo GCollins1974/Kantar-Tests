@@ -18,7 +18,7 @@ namespace Kantar
     {
         static FirefoxDriver ffd= new FirefoxDriver();
         static ChromeDriver chd= new ChromeDriver();
-        static InternetExplorerDriver ied = new InternetExplorerDriver();
+//        static InternetExplorerDriver ied = new InternetExplorerDriver();
 
         [TestMethod]
         public void Kantar_Home_UK_Title_isCorrect_InFirefox()
@@ -30,12 +30,12 @@ namespace Kantar
         {
             CheckTitleUK(chd);
         }
-        [TestMethod]
-        public void Kantar_Home_UK_Title_isCorrect_InIE9()
-        {
-            CheckTitleUK(ied);
-        }
-        [TestMethod]
+        //[TestMethod]
+        //public void Kantar_Home_UK_Title_isCorrect_InIE9()
+        //{
+        //    CheckTitleUK(ied);
+        //}
+        //[TestMethod]
         public void Kantar_Home_US_Title_isCorrect_InFirefox()
         {
             CheckTitleUS(ffd);
