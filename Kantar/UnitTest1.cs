@@ -26,11 +26,6 @@ namespace Kantar
             CheckTitleUK(ffd);
         }
         [TestMethod]
-        public void test1()
-        {
-            Assert.AreEqual("a", "a");
-        }
-        [TestMethod]
         public void Kantar_Home_UK_Title_isCorrect_InChrome()
         {
             CheckTitleUK(chd);
