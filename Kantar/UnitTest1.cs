@@ -10,6 +10,7 @@ using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Internal;
 using OpenQA.Selenium.Support;
 using System.Drawing;
+using OpenQA.Selenium.Support.UI;
 
 
 namespace Kantar
@@ -130,7 +131,14 @@ namespace Kantar
         }
         public void CheckTitleUK(IWebDriver driver)
         {
+            
             driver.Url = "http://uk.kantar.stage.guardianprofessional.co.uk/";
+            if ((driver.GetType().Name == "InternetExplorerDriver"))
+            {
+                WebDriverWait wait = new WebDriverWait(ied, TimeSpan.FromSeconds(3));
+                String initialTitle = "WebDriver";
+                wait.Until(d => d.Title != initialTitle);
+            }
             String StrExpectedTitle = "Home - Kantar";
             String actualtitle = driver.Title;
             Assert.AreEqual(StrExpectedTitle, actualtitle);
@@ -138,7 +146,7 @@ namespace Kantar
         public void CheckTitleUS(IWebDriver driver){
             driver.Url = "http://us.kantar.stage.guardianprofessional.co.uk/";
             String actualtitle = driver.Title;
-            String StrExpectedTitle = "首页 - Kantar"; //This is currently what it is incorrectly obviously. Once site has content it can be changed and then will need to be updated here.
+            String StrExpectedTitle = "Home - US - Kantar"; //This is currently what it is incorrectly obviously. Once site has content it can be changed and then will need to be updated here.
             Assert.AreEqual(StrExpectedTitle, actualtitle);
         }
         public void CheckTitleCN(IWebDriver driver)
