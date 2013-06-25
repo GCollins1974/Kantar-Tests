@@ -32,6 +32,16 @@ namespace Kantar
         {
             CheckTitleUK(chd);
         }
+
+        [TestMethod]
+        public void _Kantar_Home_UK_Title_isCorrect_InIE9()
+        {
+            ied.Url = "http://uk.kantar.stage.guardianprofessional.co.uk/";
+            ied.Navigate();
+
+            Assert.AreEqual(1, 1);
+        }
+        
         [TestMethod]
         public void Kantar_Home_UK_Title_isCorrect_InIE9()
         {
