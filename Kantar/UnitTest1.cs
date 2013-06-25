@@ -141,12 +141,12 @@ namespace Kantar
             nav.GoToUrl(Url);
             
 
-            if ((driver.GetType().Name == "InternetExplorerDriver"))
-            {
-                WebDriverWait wait = new WebDriverWait(ied, TimeSpan.FromSeconds(3));
-                String initialTitle = "WebDriver";
-                wait.Until(d => d.Title != initialTitle);
-            }
+            //if ((driver.GetType().Name == "InternetExplorerDriver"))
+            //{
+            //    WebDriverWait wait = new WebDriverWait(ied, TimeSpan.FromSeconds(3));
+            //    String initialTitle = "WebDriver";
+            //    wait.Until(d => d.Title != initialTitle);
+            //}
             String StrExpectedTitle = "Home - Kantar";
             String actualtitle = driver.Title;
             Assert.AreEqual(StrExpectedTitle, actualtitle);
