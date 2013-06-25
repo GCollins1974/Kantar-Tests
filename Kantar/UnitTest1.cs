@@ -33,14 +33,7 @@ namespace Kantar
             CheckTitleUK(chd);
         }
 
-        [TestMethod]
-        public void _Kantar_Home_UK_Title_isCorrect_InIE9()
-        {
-            ied.Url = "http://uk.kantar.stage.guardianprofessional.co.uk/";
-            ied.Navigate();
-
-            Assert.AreEqual(1, 1);
-        }
+       
         
         [TestMethod]
         public void Kantar_Home_UK_Title_isCorrect_InIE9()
@@ -142,7 +135,12 @@ namespace Kantar
         public void CheckTitleUK(IWebDriver driver)
         {
             
-            driver.Url = "http://uk.kantar.stage.guardianprofessional.co.uk/";
+            //driver.Url = "http://uk.kantar.stage.guardianprofessional.co.uk/";
+            string Url = "http://uk.kantar.stage.guardianprofessional.co.uk/";
+            INavigation nav = driver.Navigate();
+            nav.GoToUrl(Url);
+            
+
             if ((driver.GetType().Name == "InternetExplorerDriver"))
             {
                 WebDriverWait wait = new WebDriverWait(ied, TimeSpan.FromSeconds(3));
