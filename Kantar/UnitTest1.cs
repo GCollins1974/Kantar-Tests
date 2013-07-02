@@ -36,7 +36,52 @@ namespace Kantar
 
 
         [TestMethod]
-        public void Kantar_Home_UK_Title_isCorrect_InIE9()
+        public void Kantar_Home_UK_Title_isCorrect_InIE9_1()
+        {
+            CheckTitleUK(ied);
+        }
+        [TestMethod]
+        public void Kantar_Home_UK_Title_isCorrect_InIE9_2()
+        {
+            CheckTitleUK(ied);
+        }
+        [TestMethod]
+        public void Kantar_Home_UK_Title_isCorrect_InIE9_3()
+        {
+            CheckTitleUK(ied);
+        }
+        [TestMethod]
+        public void Kantar_Home_UK_Title_isCorrect_InIE9_4()
+        {
+            CheckTitleUK(ied);
+        }
+        [TestMethod]
+        public void Kantar_Home_UK_Title_isCorrect_InIE9_5()
+        {
+            CheckTitleUK(ied);
+        }
+        [TestMethod]
+        public void Kantar_Home_UK_Title_isCorrect_InIE9_6()
+        {
+            CheckTitleUK(ied);
+        }
+        [TestMethod]
+        public void Kantar_Home_UK_Title_isCorrect_InIE9_7()
+        {
+            CheckTitleUK(ied);
+        }
+        [TestMethod]
+        public void Kantar_Home_UK_Title_isCorrect_InIE9_8()
+        {
+            CheckTitleUK(ied);
+        }
+        [TestMethod]
+        public void Kantar_Home_UK_Title_isCorrect_InIE9_9()
+        {
+            CheckTitleUK(ied);
+        }
+        [TestMethod]
+        public void Kantar_Home_UK_Title_isCorrect_InIE9_10()
         {
             CheckTitleUK(ied);
         }
