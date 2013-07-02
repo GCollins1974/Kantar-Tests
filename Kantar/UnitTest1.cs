@@ -138,11 +138,13 @@ namespace Kantar
 
             if ((driver.GetType().Name == "internetexplorerdriver"))
             {
-                driver.Navigate().GoToUrl("http://uk.kantar.stage.guardianprofessional.co.uk/");
-                System.Threading.Thread.Sleep(60000);
-                WebDriverWait wait = new WebDriverWait(ied, TimeSpan.FromSeconds(10));
-                String actualText = driver.FindElement(By.CssSelector("html body.uk form#Form1 div#whiteBackground div#mainContainer div#mainNavigationContainer ul.firstLevelMenu li.first a.selected")).Text;
-                wait.Until(a => actualText = "HOME");
+                //driver.Navigate().GoToUrl("http://uk.kantar.stage.guardianprofessional.co.uk/");
+                //System.Threading.Thread.Sleep(60000);
+                //WebDriverWait wait = new WebDriverWait(ied, TimeSpan.FromSeconds(10));
+                //String actualText = driver.FindElement(By.CssSelector("html body.uk form#Form1 div#whiteBackground div#mainContainer div#mainNavigationContainer ul.firstLevelMenu li.first a.selected")).Text;
+                //wait.Until(a => actualText = "HOME");
+                IWebElement we = FindElement(driver, By.CssSelector("html body.uk form#Form1 div#whiteBackground div#mainContainer div#mainNavigationContainer ul.firstLevelMenu li.first a.selected"), 10);
+           
             }
             else
             { driver.Url = "http://uk.kantar.stage.guardianprofessional.co.uk/"; }
@@ -275,6 +277,16 @@ namespace Kantar
             }
             string actfontsize = home.GetCssValue("font-size");
             Assert.AreEqual(expectedfontsize, actfontsize);
+        }
+
+        public static IWebElement FindElement(IWebDriver driver, By by, int timeoutInSeconds)
+        {
+            if (timeoutInSeconds > 0)
+            {
+                var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(timeoutInSeconds));
+                return wait.Until(drv => drv.FindElement(by));
+            }
+            return driver.FindElement(by);
         }
         [ClassCleanup()]
         public static void ClassCleanup()
