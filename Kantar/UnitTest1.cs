@@ -18,13 +18,13 @@ namespace Kantar
     [TestClass]
     public class UnitTest1
     {
-        static FirefoxDriver ffd= new FirefoxDriver();
+        static FirefoxDriver ffd = new FirefoxDriver();
         static ChromeDriver chd = new ChromeDriver();
         static InternetExplorerDriver ied = new InternetExplorerDriver();
-       
+
         [TestMethod]
         public void Kantar_Home_UK_Title_isCorrect_InFirefox()
-        { 
+        {
             CheckTitleUK(ffd);
         }
         [TestMethod]
@@ -33,8 +33,8 @@ namespace Kantar
             CheckTitleUK(chd);
         }
 
-       
-        
+
+
         [TestMethod]
         public void Kantar_Home_UK_Title_isCorrect_InIE9()
         {
@@ -134,24 +134,25 @@ namespace Kantar
         }
         public void CheckTitleUK(IWebDriver driver)
         {
-            
-            //driver.Url = "http://uk.kantar.stage.guardianprofessional.co.uk/";
-            string Url = "http://uk.kantar.stage.guardianprofessional.co.uk/";
-            INavigation nav = driver.Navigate();
-            nav.GoToUrl(Url);
-            
 
-            //if ((driver.GetType().Name == "InternetExplorerDriver"))
-            //{
-            //    WebDriverWait wait = new WebDriverWait(ied, TimeSpan.FromSeconds(3));
-            //    String initialTitle = "WebDriver";
-            //    wait.Until(d => d.Title != initialTitle);
-            //}
+
+            if ((driver.GetType().Name == "internetexplorerdriver"))
+            {
+                driver.Navigate().GoToUrl("http://uk.kantar.stage.guardianprofessional.co.uk/");
+                System.Threading.Thread.Sleep(60000);
+                WebDriverWait wait = new WebDriverWait(ied, TimeSpan.FromSeconds(10));
+                String actualText = driver.FindElement(By.CssSelector("html body.uk form#Form1 div#whiteBackground div#mainContainer div#mainNavigationContainer ul.firstLevelMenu li.first a.selected")).Text;
+                wait.Until(a => actualText = "HOME");
+            }
+            else
+            { driver.Url = "http://uk.kantar.stage.guardianprofessional.co.uk/"; }
+
             String StrExpectedTitle = "Home - Kantar";
             String actualtitle = driver.Title;
             Assert.AreEqual(StrExpectedTitle, actualtitle);
         }
-        public void CheckTitleUS(IWebDriver driver){
+        public void CheckTitleUS(IWebDriver driver)
+        {
             driver.Url = "http://us.kantar.stage.guardianprofessional.co.uk/";
             String actualtitle = driver.Title;
             String StrExpectedTitle = "Home - US - Kantar"; //This is currently what it is incorrectly obviously. Once site has content it can be changed and then will need to be updated here.
@@ -186,11 +187,11 @@ namespace Kantar
             driver.Url = "http://uk.kantar.stage.guardianprofessional.co.uk/";
             IWebElement home;
             home = driver.FindElement(By.CssSelector("html body.uk form#Form1 div#whiteBackground div#mainContainer div#mainNavigationContainer ul.firstLevelMenu li.first a.selected"));
-                                                    
+
             string actualfont = home.GetCssValue("font-family");
             Assert.IsTrue(actualfont.Contains("dinotregular"));
             String expectedfontsize;
-            if ((driver.GetType().Name == "FirefoxDriver")) 
+            if ((driver.GetType().Name == "FirefoxDriver"))
             {
                 expectedfontsize = "15.95px";
             }
@@ -209,9 +210,9 @@ namespace Kantar
         {
             driver.Url = "http://cn.kantar.stage.guardianprofessional.co.uk/";
             IWebElement home;
-             home = driver.FindElement(By.CssSelector("html body.cn form#Form1 div#whiteBackground div#mainContainer div#mainNavigationContainer ul.firstLevelMenu li.first a"));
-             //html body.cn form#Form1 div#whiteBackground div#mainContainer div#mainNavigationContainer ul.firstLevelMenu li.first a.selected CSS path for actual homepage above is the login page
-             string actualfont = home.GetCssValue("font-family");
+            home = driver.FindElement(By.CssSelector("html body.cn form#Form1 div#whiteBackground div#mainContainer div#mainNavigationContainer ul.firstLevelMenu li.first a"));
+            //html body.cn form#Form1 div#whiteBackground div#mainContainer div#mainNavigationContainer ul.firstLevelMenu li.first a.selected CSS path for actual homepage above is the login page
+            string actualfont = home.GetCssValue("font-family");
             Assert.IsTrue(actualfont.Contains("Microsoft Yahei"));
             String expectedfontsize;
             if ((driver.GetType().Name == "FirefoxDriver"))
@@ -225,12 +226,12 @@ namespace Kantar
             else
             {
                 expectedfontsize = "10pt";
-            } 
+            }
             string actfontsize = home.GetCssValue("font-size");
             Assert.AreEqual(expectedfontsize, actfontsize);
         }
         public void CheckMenuFontCN_EN(IWebDriver driver)
-        {   
+        {
             driver.Url = "http://cn-en.kantar.stage.guardianprofessional.co.uk/";
             IWebElement home;
             home = driver.FindElement(By.CssSelector("html body.cn-en form#Form1 div#whiteBackground div#mainContainer div#mainNavigationContainer ul.firstLevelMenu li.first a.selected"));
@@ -248,7 +249,7 @@ namespace Kantar
             else
             {
                 expectedfontsize = "10pt";
-            } 
+            }
             string actfontsize = home.GetCssValue("font-size");
             Assert.AreEqual(expectedfontsize, actfontsize);
         }
@@ -271,7 +272,7 @@ namespace Kantar
             else
             {
                 expectedfontsize = "10pt";
-            } 
+            }
             string actfontsize = home.GetCssValue("font-size");
             Assert.AreEqual(expectedfontsize, actfontsize);
         }
@@ -280,8 +281,8 @@ namespace Kantar
         {
             ffd.Quit();
             chd.Quit();
-            ied.Quit();
+            // ied.Quit();
         }
-                     
+
     }
 }
